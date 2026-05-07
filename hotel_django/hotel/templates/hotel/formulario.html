@@ -6,13 +6,12 @@
 <head>
 
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Administración de Habitaciones | Hotel Quinta Dalam</title>
 
-    <link rel="stylesheet" href="{% static 'hotel/css/estilos.css' %}">
-    <link rel="stylesheet" href="{% static 'hotel/css/formulario.css' %}">
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
 
 </head>
 
@@ -25,14 +24,9 @@
     <nav>
 
         <a href="{% url 'index' %}">Inicio</a>
-
         <a href="{% url 'catalogo' %}">Habitaciones</a>
-
         <a href="{% url 'contacto' %}">Contacto</a>
-
-        <a href="{% url 'formulario' %}" class="activo">
-            Administrar
-        </a>
+        <a href="{% url 'formulario' %}" class="activo">Administrar</a>
 
     </nav>
 
@@ -42,9 +36,7 @@
 
     <h2>Administración de Habitaciones</h2>
 
-    <p>
-        Gestión interna de habitaciones.
-    </p>
+    <p>Gestión interna de habitaciones</p>
 
 </section>
 
@@ -54,100 +46,53 @@
 
         <div class="form-card">
 
-            <h2>Formulario de Gestión</h2>
+            <h2>Formulario de Habitaciones</h2>
 
-            <form id="formHabitaciones" method="post" enctype="multipart/form-data">
+            {% if mensaje %}
+                <p style="color:green;">{{ mensaje }}</p>
+            {% endif %}
+
+            <form method="post">
 
                 {% csrf_token %}
 
+                <!-- NOMBRE -->
                 <div class="form-group">
-
-                    <label for="id">ID</label>
-
-                    <input type="text" id="id" name="id" required>
-
+                    <label>Nombre</label>
+                    <input type="text" name="nombre" required>
                 </div>
 
+                <!-- DESCRIPCIÓN -->
                 <div class="form-group">
-
-                    <label for="nombre">Nombre</label>
-
-                    <input type="text" id="nombre" name="nombre" required>
-
+                    <label>Descripción</label>
+                    <textarea name="descripcion" required></textarea>
                 </div>
 
+                <!-- PRECIO -->
                 <div class="form-group">
-
-                    <label for="descripcion">Descripción</label>
-
-                    <textarea id="descripcion" name="descripcion" required></textarea>
-
+                    <label>Precio</label>
+                    <input type="number" name="precio" required>
                 </div>
 
+                <!-- TIPO -->
                 <div class="form-group">
-
-                    <label for="precio">Precio</label>
-
-                    <input type="number" id="precio" name="precio" required>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label for="tipo">Tipo</label>
-
-                    <select id="tipo" name="tipo">
-
-                        <option>Individual</option>
-
-                        <option>Doble</option>
-
-                        <option>Suite</option>
-
+                    <label>Tipo</label>
+                    <select name="tipo" required>
+                        <option value="Individual">Individual</option>
+                        <option value="Doble">Doble</option>
+                        <option value="Suite">Suite</option>
                     </select>
-
                 </div>
 
+                <!-- IMAGEN -->
                 <div class="form-group">
-
-                    <label for="imagenFile">
-                        Subir imagen
-                    </label>
-
-                    <input type="file"
-                           id="imagenFile"
-                           name="imagenFile"
-                           accept="image/*">
-
+                    <label>Imagen (URL)</label>
+                    <input type="text" name="imagen" placeholder="https://..." required>
                 </div>
 
-                <div class="form-group">
-
-                    <label for="imagenURL">
-                        O pegar URL de imagen
-                    </label>
-
-                    <input type="text"
-                           id="imagenURL"
-                           name="imagenURL"
-                           placeholder="https://...">
-
-                </div>
-
+                <!-- BOTÓN -->
                 <div class="form-buttons">
-
-                    <button type="button" id="btnAlta">
-                        Alta
-                    </button>
-
-                    <button type="button" id="btnModificar">
-                        Modificar
-                    </button>
-
-                    <button type="button" id="btnEliminar">
-                        Eliminar
-                    </button>
-
+                    <button type="submit">Guardar habitación</button>
                 </div>
 
             </form>
@@ -159,15 +104,11 @@
 </main>
 
 <footer>
-
     <p>© 2026 Hotel Quinta Dalam</p>
-
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
-<script src="{% static 'hotel/js/main.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
 
 </body>
-
 </html>
