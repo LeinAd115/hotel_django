@@ -1,10 +1,20 @@
 from django.shortcuts import render
+from .models import Habitacion
 
 def index(request):
     return render(request, 'hotel/index.html')
 
 def catalogo(request):
-    return render(request, 'hotel/catalogo.html')
+
+    habitaciones = Habitacion.objects.all()
+
+    return render(
+        request,
+        'hotel/catalogo.html',
+        {
+            'habitaciones': habitaciones
+        }
+    )
 
 def contacto(request):
     return render(request, 'hotel/contacto.html')

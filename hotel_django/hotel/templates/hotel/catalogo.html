@@ -4,13 +4,9 @@
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
-
     <title>Habitaciones | Hotel Quinta Dalam</title>
-
     <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
-
 </head>
 
 <body>
@@ -22,15 +18,10 @@
     <nav>
 
         <a href="{% url 'index' %}">Inicio</a>
-
         <a href="{% url 'mision' %}">Misión</a>
-
         <a href="{% url 'vision' %}">Visión</a>
-
         <a href="{% url 'catalogo' %}">Habitaciones</a>
-
         <a href="{% url 'reservacion' %}">Reservar</a>
-
         <a href="{% url 'contacto' %}">Contacto</a>
 
     </nav>
@@ -43,66 +34,43 @@
 
     <div class="catalogo" id="catalogo">
 
-        <a href="{% url 'reservacion' %}?habitacion=Uruapan"
-           class="card">
+        {% for hab in habitaciones %}
 
-            <img src="{% static 'hotel/img/hab2.jpg' %}"
-                 alt="Habitación Uruapan">
+        <a href="{% url 'reservacion' %}?habitacion={{ hab.nombre }}" class="card">
+
+            <img src="{{ hab.imagen }}" alt="{{ hab.nombre }}">
 
             <div class="card-content">
 
-                <h3>Habitación Uruapan</h3>
+                <h3>{{ hab.nombre }}</h3>
 
-                <p>Capacidad: 1-2 personas.</p>
+                <p>{{ hab.descripcion }}</p>
 
-                <p>
-                    Cómoda habitación para una persona.
-                </p>
+                <p>Tipo: {{ hab.tipo }}</p>
 
                 <p class="precio">
-                    $800 MXN / noche
+                    ${{ hab.precio }} MXN / noche
                 </p>
 
             </div>
 
         </a>
 
-        <a href="{% url 'reservacion' %}?habitacion=Morelia"
-           class="card">
+        {% empty %}
 
-            <img src="{% static 'hotel/img/hab3.jpg' %}"
-                 alt="Habitación Morelia">
+        <p>No hay habitaciones registradas.</p>
 
-            <div class="card-content">
-
-                <h3>Habitación Morelia</h3>
-
-                <p>Capacidad: 2-4 personas.</p>
-
-                <p>
-                    Ideal para parejas o familias pequeñas.
-                </p>
-
-                <p class="precio">
-                    $1,200 MXN / noche
-                </p>
-
-            </div>
-
-        </a>
+        {% endfor %}
 
     </div>
 
 </div>
 
 <footer>
-
     <p>© 2026 Hotel Quinta Dalam</p>
-
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
 <script src="{% static 'hotel/js/main.js' %}"></script>
 
 </body>
