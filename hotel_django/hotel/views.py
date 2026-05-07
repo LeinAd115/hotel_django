@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404, redirect
+from django.contrib import messages
 from .models import Habitacion, Reservacion
 
 
@@ -46,6 +47,8 @@ def vision(request):
 
 def formulario(request):
 
+    mensaje = None
+
     if request.method == "POST":
 
         Habitacion.objects.create(
@@ -53,11 +56,23 @@ def formulario(request):
             descripcion=request.POST.get("descripcion"),
             precio=request.POST.get("precio"),
             tipo=request.POST.get("tipo"),
-            imagen=request.POST.get("imagen") 
+            imagen=request.POST.get("imagen")
         )
 
-        return render(request, "hotel/formulario.html", {
-            "mensaje": "Habitación guardada correctamente"
-        })
+        mensaje = "Habitación guardada correctamente"
 
-    return render(request, "hotel/formulario.html")
+    habitaciones = Habitacion.objects.all()
+
+    return render(request, "hotel/formulario.html", {
+        "habitaciones": habitaciones,
+        "mensaje": mensaje
+    })
+
+def eliminar_habitacion(request, id):
+
+    habitacion = get_object_or_404(Habitacion, id=id)
+    habitacion.delete()
+
+    messages.success(request, "Habitación eliminada correctamente")
+
+    return redirect('formulario')

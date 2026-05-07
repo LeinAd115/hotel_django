@@ -42,39 +42,41 @@
 
 <main>
 
+    <!-- MENSAJE GLOBAL (BIEN UBICADO) -->
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color:green; text-align:center; font-weight:bold;">
+                {{ message }}
+            </p>
+        {% endfor %}
+    {% endif %}
+
+    <!-- FORMULARIO CREAR -->
     <section class="form-wrapper">
 
         <div class="form-card">
 
-            <h2>Formulario de Habitaciones</h2>
-
-            {% if mensaje %}
-                <p style="color:green;">{{ mensaje }}</p>
-            {% endif %}
+            <h2>Crear habitación</h2>
 
             <form method="post">
 
                 {% csrf_token %}
 
-                <!-- NOMBRE -->
                 <div class="form-group">
                     <label>Nombre</label>
                     <input type="text" name="nombre" required>
                 </div>
 
-                <!-- DESCRIPCIÓN -->
                 <div class="form-group">
                     <label>Descripción</label>
                     <textarea name="descripcion" required></textarea>
                 </div>
 
-                <!-- PRECIO -->
                 <div class="form-group">
                     <label>Precio</label>
                     <input type="number" name="precio" required>
                 </div>
 
-                <!-- TIPO -->
                 <div class="form-group">
                     <label>Tipo</label>
                     <select name="tipo" required>
@@ -84,13 +86,11 @@
                     </select>
                 </div>
 
-                <!-- IMAGEN -->
                 <div class="form-group">
                     <label>Imagen (URL)</label>
-                    <input type="text" name="imagen" placeholder="https://..." required>
+                    <input type="text" name="imagen" required>
                 </div>
 
-                <!-- BOTÓN -->
                 <div class="form-buttons">
                     <button type="submit">Guardar habitación</button>
                 </div>
@@ -101,14 +101,54 @@
 
     </section>
 
+    <!-- LISTA -->
+    <section style="margin-top:40px;">
+
+        <h2 style="text-align:center;">Habitaciones registradas</h2>
+
+        {% for hab in habitaciones %}
+
+            <div style="
+                border:1px solid #ccc;
+                padding:15px;
+                margin:15px auto;
+                max-width:600px;
+                border-radius:10px;
+            ">
+
+                <h3>{{ hab.nombre }}</h3>
+                <p>{{ hab.descripcion }}</p>
+                <p><strong>${{ hab.precio }}</strong></p>
+                <p>{{ hab.tipo }}</p>
+
+                <img src="{{ hab.imagen }}"
+                     style="width:100%; max-height:200px; object-fit:cover;">
+
+                <!-- ELIMINAR CORRECTO -->
+                <form method="post"
+                      action="{% url 'eliminar_habitacion' hab.id %}"
+                      style="margin-top:10px;">
+
+                    {% csrf_token %}
+
+                    <button type="submit"
+                            style="background:red;color:white;padding:8px;border:none;border-radius:5px;">
+                        Eliminar
+                    </button>
+
+                </form>
+
+            </div>
+
+        {% endfor %}
+
+    </section>
+
 </main>
 
 <footer>
     <p>© 2026 Hotel Quinta Dalam</p>
 </footer>
-
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="{% static 'js/main.js' %}"></script>
 
 </body>
 </html>

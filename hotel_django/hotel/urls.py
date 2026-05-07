@@ -17,4 +17,6 @@ urlpatterns = [
 
     path('formulario/', views.formulario, name='formulario'),
 
+    path('habitacion/eliminar/<int:id>/', views.eliminar_habitacion, name='eliminar_habitacion'),
+
 ]
