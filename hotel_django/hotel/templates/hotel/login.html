@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Iniciar Sesión - Hotel Paraíso</title>
-    <link rel="stylesheet" href="css/estilos.css">
    {% load static %}
         <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
 </head>
@@ -12,26 +11,32 @@
 
 <div class="login-container">
     <h2>Iniciar Sesión</h2>
+    {% if messages %}
+    {% for message in messages %}
+        <p style="color:red; text-align:center; font-weight:bold;">
+            {{ message }}
+        </p>
+    {% endfor %}
+{% endif %}
 
-    <form action="#" method="post">
-        
-        <label>Usuario</label>
-        <input type="text" name="usuario" required>
+    <form method="post" action="{% url 'login' %}">
 
-        <label>Contraseña</label>
-        <input type="password" name="password" required>
+    {% csrf_token %}
 
-        <button type="submit">Ingresar</button>
+    <label>Usuario</label>
+    <input type="text" name="username" required>
 
-    </form>
+    <label>Contraseña</label>
+    <input type="password" name="password" required>
 
-    <p class="extra">
-        ¿No tienes cuenta? <a href="#">Registrarse</a>
-    </p>
+    <button type="submit">Ingresar</button>
+
+</form>
+
 </div>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="{% static 'hotel/js/main.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
 
 </body>
 </html>

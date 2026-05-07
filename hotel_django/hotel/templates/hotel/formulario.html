@@ -21,28 +21,34 @@
 
     <h1>Hotel Quinta Dalam</h1>
 
+    
     <nav>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Cerrar sesión</a>
+        {% endif %}
 
         <a href="{% url 'index' %}">Inicio</a>
         <a href="{% url 'catalogo' %}">Habitaciones</a>
         <a href="{% url 'contacto' %}">Contacto</a>
         <a href="{% url 'formulario' %}" class="activo">Administrar</a>
-
     </nav>
 
 </header>
 
 <section class="hero">
-
+{% if user.is_authenticated %}
+    <p>Hola, {{ user.username }}</p>
+{% else %}
+    <a href="{% url 'login' %}">Login</a>
+{% endif %}
     <h2>Administración de Habitaciones</h2>
-
     <p>Gestión interna de habitaciones</p>
 
 </section>
 
 <main>
 
-    <!-- MENSAJE GLOBAL (BIEN UBICADO) -->
+   
     {% if messages %}
         {% for message in messages %}
             <p style="color:green; text-align:center; font-weight:bold;">
@@ -51,14 +57,14 @@
         {% endfor %}
     {% endif %}
 
-    <!-- FORMULARIO CREAR -->
     <section class="form-wrapper">
 
         <div class="form-card">
 
             <h2>Crear habitación</h2>
 
-            <form method="post">
+            <!-- ✔ ID IMPORTANTE PARA AJAX -->
+            <form id="formHabitacion" method="post">
 
                 {% csrf_token %}
 
@@ -101,7 +107,6 @@
 
     </section>
 
-    <!-- LISTA -->
     <section style="margin-top:40px;">
 
         <h2 style="text-align:center;">Habitaciones registradas</h2>
@@ -124,7 +129,6 @@
                 <img src="{{ hab.imagen }}"
                      style="width:100%; max-height:200px; object-fit:cover;">
 
-                <!-- ELIMINAR CORRECTO -->
                 <form method="post"
                       action="{% url 'eliminar_habitacion' hab.id %}"
                       style="margin-top:10px;">
@@ -149,6 +153,37 @@
 <footer>
     <p>© 2026 Hotel Quinta Dalam</p>
 </footer>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script>
+$("#formHabitacion").submit(function(e){
+
+    e.preventDefault();
+
+    let formData = new FormData(this);
+
+    $.ajax({
+        url: "{% url 'formulario' %}",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+
+        success: function(response){
+            alert(response.mensaje);
+            $("#formHabitacion")[0].reset();
+        },
+
+        error: function(xhr){
+            console.log(xhr.responseText);
+            alert("Error al guardar");
+        }
+
+    });
+
+});
+</script>
 
 </body>
 </html>

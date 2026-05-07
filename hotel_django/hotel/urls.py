@@ -19,4 +19,8 @@ urlpatterns = [
 
     path('habitacion/eliminar/<int:id>/', views.eliminar_habitacion, name='eliminar_habitacion'),
 
+    path('login/', views.login_usuario, name='login'),
+    
+    path('logout/', views.logout_usuario, name='logout'),
+
 ]
