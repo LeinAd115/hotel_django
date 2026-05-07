@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago | Hotel Quinta Dalam</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'hotel/css/estilos.css' %}">
+</head>
+
+<body>
+
+<header>
+    <h1>Hotel Quinta Dalam</h1>
+</header>
+
+<section class="hero">
+    <h2>Proceso de Pago</h2>
+    <p>Ingrese los datos de su método de pago.</p>
+</section>
+
+<main>
+    <section class="form-wrapper">
+        <div class="form-card">
+            <h2>Datos de Pago</h2>
+
+            <form id="formPago">
+
+                <div class="form-group">
+                    <label for="titular">Nombre del titular</label>
+                    <input type="text" id="titular" name="titular" required>
+                    <small id="error-titular" class="error"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="tarjeta">Número de tarjeta</label>
+                    <input type="text" id="tarjeta" name="tarjeta" maxlength="16" required>
+                    <small id="error-tarjeta" class="error"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="vencimiento">Fecha de vencimiento</label>
+                    <input type="month" id="vencimiento" name="vencimiento" required>
+                    <small id="error-vencimiento" class="error"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="password" id="cvv" name="cvv" maxlength="4" required>
+                    <small id="error-cvv" class="error"></small>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit">Confirmar Pago</button>
+                </div>
+
+            </form>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>© 2026 Hotel Quinta Dalam</p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="{% static 'hotel/js/main.js' %}"></script>
+
+</body>
+</html>

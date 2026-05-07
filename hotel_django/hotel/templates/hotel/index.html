@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel Paraíso</title>
+   {% load static %}
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+</head>
+<body class="inicio">
+
+<header>
+    <h1>Hotel Paraíso</h1>
+    <nav>
+          <a href="/">Inicio</a>
+          <a href="/mision/">Misión</a>
+          <a href="/vision/">Visión</a>
+          <a href="/catalogo/">Habitaciones</a>
+          <a href="/reservacion/">Reservar</a>
+          <a href="/contacto/">Contacto</a>
+    </nav>
+</header>
+
+<div class="container">
+    <section class="hero">
+        <h2>Bienvenidos</h2>
+        <p>Disfruta del confort, elegancia y una experiencia inolvidable.</p>
+        <a href="catalogo.html" class="btn">Ver Habitaciones</a>
+    </section>
+    
+    <section class="servicios">
+
+        <div class="servicio">
+            <h3>Servicio 24/7</h3>
+            <p>Atención disponible en cualquier momento del día.</p>
+        </div>
+
+        <div class="servicio">
+            <h3>WiFi Gratis</h3>
+            <p>Conexión de alta velocidad en todas las áreas.</p>
+        </div>
+
+        <div class="servicio">
+            <h3>Spa & Alberca</h3>
+            <p>Relájate y disfruta de nuestras instalaciones premium.</p>
+        </div>
+
+    </section>
+
+</div>
+
+<footer>
+    <p>© 2026 Hotel Paraíso</p>
+  <p>
+        <a href="https://jigsaw.w3.org/css-validator/check/referer">
+            <img style="border:0;width:88px;height:31px"
+                src="https://jigsaw.w3.org/css-validator/images/vcss"
+                alt="¡CSS Válido!">
+        </a>
+
+        <a href="https://jigsaw.w3.org/css-validator/check/referer">
+        <img style="border:0;width:88px;height:31px"
+            src="https://jigsaw.w3.org/css-validator/images/vcss-blue"
+            alt="¡CSS Válido!">
+        </a>
+</p>
+
+    
+
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="{% static 'hotel/js/main.js' %}"></script>
+
+</body>
+</html>

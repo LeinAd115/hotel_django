@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración de Habitaciones - Hotel Paraíso</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <link rel="stylesheet" href="css/formulario.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Hotel Quinta Dalam</h1>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="catalogo.html">Habitaciones</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="formulario.html" class="activo">Administrar</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h2>Administración de Habitaciones</h2>
+    <p>Gestión interna de habitaciones.</p>
+</section>
+
+<main>
+    <section class="form-wrapper">
+        <div class="form-card">
+            <h2>Formulario de Gestión</h2>
+
+            <form id="formHabitaciones">
+
+                <div class="form-group">
+                    <label>ID</label>
+                    <input type="text" id="id" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" id="nombre" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Descripción</label>
+                    <textarea id="descripcion" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Precio</label>
+                    <input type="number" id="precio" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Tipo</label>
+                    <select id="tipo">
+                        <option>Individual</option>
+                        <option>Doble</option>
+                        <option>Suite</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Subir imagen</label>
+                    <input type="file" id="imagenFile" accept="image/*">
+                </div>
+
+                <div class="form-group">
+                    <label>O pegar URL de imagen</label>
+                    <input type="text" id="imagenURL" placeholder="https://...">
+                </div>
+
+                <div class="form-buttons">
+                    <button type="button" id="btnAlta">Alta</button>
+                    <button type="button" id="btnModificar">Modificar</button>
+                    <button type="button" id="btnEliminar">Eliminar</button>
+                </div>
+
+            </form>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>© 2026 Hotel Paraíso</p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="{% static 'hotel/js/main.js' %}"></script>
+
+</body>
+</html>
