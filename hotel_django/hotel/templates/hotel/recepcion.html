@@ -1,0 +1,88 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Panel de Recepción | Hotel Quinta Dalam</title>
+
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>Hotel Quinta Dalam</h1>
+
+    <nav>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Cerrar sesión</a>
+        {% endif %}
+
+        <a href="{% url 'index' %}">Inicio</a>
+        <a href="{% url 'catalogo' %}">Habitaciones</a>
+        <a href="{% url 'recepcion' %}" class="activo">Recepción</a>
+
+    </nav>
+
+</header>
+
+<section class="hero">
+
+    {% if user.is_authenticated %}
+        <p>Hola, {{ user.username }}</p>
+    {% else %}
+        <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+
+    <h2>Panel de Recepción</h2>
+    <p>Gestión de reservaciones del hotel</p>
+
+</section>
+
+<main>
+
+    <section style="margin-top:40px;">
+
+        <h2 style="text-align:center;">Reservaciones registradas</h2>
+
+        {% for r in reservaciones %}
+
+            <div style="
+                border:1px solid #ccc;
+                padding:15px;
+                margin:15px auto;
+                max-width:600px;
+                border-radius:10px;
+                background-color: white;
+            ">
+
+                <h3>{{ r.nombre_cliente }}</h3>
+                <p><strong>Email:</strong> {{ r.email }}</p>
+                <p><strong>Habitación:</strong> {{ r.habitacion }}</p>
+                <p><strong>Entrada:</strong> {{ r.fecha_entrada }}</p>
+                <p><strong>Salida:</strong> {{ r.fecha_salida }}</p>
+
+            </div>
+
+        {% empty %}
+            <p style="text-align:center;">No hay reservaciones registradas</p>
+        {% endfor %}
+
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 Hotel Quinta Dalam</p>
+</footer>
+
+</body>
+</html>

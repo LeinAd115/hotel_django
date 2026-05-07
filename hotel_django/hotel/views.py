@@ -10,9 +10,6 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import Habitacion, Reservacion
 
 
-# =========================
-# 🔐 ROLES
-# =========================
 
 def es_admin(user):
     return user.groups.filter(name='Admin').exists()
@@ -20,14 +17,8 @@ def es_admin(user):
 def es_recepcion(user):
     return user.groups.filter(name='Recepcion').exists()
 
-
-# =========================
-# 🏠 PÁGINAS GENERALES
-# =========================
-
 def index(request):
     return render(request, 'hotel/index.html')
-
 
 @login_required
 def catalogo(request):
@@ -35,7 +26,6 @@ def catalogo(request):
     return render(request, 'hotel/catalogo.html', {
         'habitaciones': habitaciones
     })
-
 
 def contacto(request):
     return render(request, 'hotel/contacto.html')
@@ -48,10 +38,6 @@ def mision(request):
 def vision(request):
     return render(request, 'hotel/vision.html')
 
-
-# =========================
-# 🏨 HABITACIONES (SOLO ADMIN)
-# =========================
 
 @user_passes_test(es_admin)
 def formulario(request):
@@ -90,10 +76,6 @@ def eliminar_habitacion(request, id):
     return redirect('formulario')
 
 
-# =========================
-# 📅 RESERVACIONES (SOLO RECEPCIÓN)
-# =========================
-
 @user_passes_test(es_recepcion)
 def reservacion(request):
 
@@ -114,10 +96,6 @@ def reservacion(request):
     return render(request, 'hotel/reservacion.html')
 
 
-# =========================
-# 🔑 LOGIN / LOGOUT
-# =========================
-
 def login_usuario(request):
 
     if request.method == "POST":
@@ -136,7 +114,7 @@ def login_usuario(request):
                 return redirect("formulario")
 
             elif user.groups.filter(name='Recepcion').exists():
-                return redirect("reservacion")
+                return redirect("recepcion")
 
             else:
                 return redirect("catalogo")
@@ -150,3 +128,16 @@ def login_usuario(request):
 def logout_usuario(request):
     logout(request)
     return redirect("login")
+
+def es_recepcion(user):
+    return user.groups.filter(name='Recepcion').exists()
+
+
+@user_passes_test(es_recepcion)
+def recepcion_panel(request):
+
+    reservaciones = Reservacion.objects.all().order_by('-id')
+
+    return render(request, 'hotel/recepcion.html', {
+        'reservaciones': reservaciones
+    })
