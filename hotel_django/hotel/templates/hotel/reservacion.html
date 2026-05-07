@@ -1,82 +1,141 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Reservación | Hotel Quinta Dalam</title>
-    <link rel="stylesheet" href="css/estilos.css">
-    {% load static %}
+
     <link rel="stylesheet" href="{% static 'hotel/css/estilos.css' %}">
+    <link rel="stylesheet" href="{% static 'hotel/css/formulario.css' %}">
 </head>
+
 <body>
 
 <header>
+
     <h1>Hotel Quinta Dalam</h1>
+
     <nav>
-        <a href="index.html">Inicio</a>
-        <a href="catalogo.html">Habitaciones</a>
-        <a href="contacto.html">Contacto</a>
+        <a href="{% url 'index' %}">Inicio</a>
+        <a href="{% url 'catalogo' %}">Habitaciones</a>
+        <a href="{% url 'contacto' %}">Contacto</a>
     </nav>
+
 </header>
 
 <section class="hero">
+
     <h2>Reservación de Habitación</h2>
-    <p>Complete el siguiente formulario para solicitar su estancia.</p>
- </section>
+
+    <p>
+        Complete el siguiente formulario para solicitar su estancia.
+    </p>
+
+</section>
 
 <main>
+
     <section class="form-wrapper">
+
         <div class="form-card">
+
             <h2>Datos de Reservación</h2>
 
-            <form id="formReservacion" action="pago.html" method="get">
+            <form id="formReservacion" method="post">
+
+                {% csrf_token %}
 
                 <div class="form-group">
+
                     <label for="nombre">Nombre completo</label>
+
                     <input type="text" id="nombre" name="nombre" required>
+
                     <small id="error-nombre" class="error"></small>
+
                 </div>
 
                 <div class="form-group">
+
                     <label for="correo">Correo electrónico</label>
+
                     <input type="email" id="correo" name="correo" required>
+
                 </div>
 
                 <div class="form-group">
+
                     <label for="entrada">Fecha de entrada</label>
+
                     <input type="date" id="entrada" name="entrada" required>
+
                 </div>
 
                 <div class="form-group">
+
                     <label for="salida">Fecha de salida</label>
+
                     <input type="date" id="salida" name="salida" required>
+
                     <small id="error-fecha" class="error"></small>
+
                 </div>
 
                 <div class="form-group">
+
                     <label for="tipo">Tipo de habitación</label>
+
                     <select id="tipo" name="tipo" required>
-                        <option value="" disabled selected>Seleccione una opción</option>
-                        <option value="Uruapan">Habitación Uruapan</option>
-                        <option value="Morelia">Habitación Morelia</option>
-                        <option value="suite">Suite</option>
+
+                        <option value="" disabled selected>
+                            Seleccione una opción
+                        </option>
+
+                        <option value="Uruapan">
+                            Habitación Uruapan
+                        </option>
+
+                        <option value="Morelia">
+                            Habitación Morelia
+                        </option>
+
+                        <option value="Suite">
+                            Suite
+                        </option>
+
                     </select>
+
                 </div>
 
                 <div class="form-buttons">
-                    <button type="submit">Continuar a Pago</button>
+
+                    <button type="submit">
+                        Continuar a Pago
+                    </button>
+
                 </div>
 
             </form>
+
         </div>
+
     </section>
+
 </main>
 
 <footer>
+
     <p>© 2026 Hotel Quinta Dalam</p>
+
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
 <script src="{% static 'hotel/js/main.js' %}"></script>
+
 </body>
 </html>

@@ -1,39 +1,68 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
-    <title>Misión - Hotel Paraíso</title>
-    {% load static %}
+
+    <title>Misión | Hotel Quinta Dalam</title>
+
     <link rel="stylesheet" href="{% static 'hotel/css/estilos.css' %}">
+
 </head>
 
 <body>
 
 <header>
-    <h1>Hotel Paraíso</h1>
+
+    <h1>Hotel Quinta Dalam</h1>
+
     <nav>
-        <a href="index.html">Inicio</a>
-        <a href="mision.html">Misión</a>
-        <a href="vision.html">Visión</a>
-        <a href="catalogo.html">Habitaciones</a>
-        <a href="reservacion.html">Reservar</a>
-        <a href="contacto.html">Contacto</a>
+
+        <a href="{% url 'index' %}">Inicio</a>
+
+        <a href="{% url 'mision' %}">Misión</a>
+
+        <a href="{% url 'vision' %}">Visión</a>
+
+        <a href="{% url 'catalogo' %}">Habitaciones</a>
+
+        <a href="{% url 'reservacion' %}">Reservar</a>
+
+        <a href="{% url 'contacto' %}">Contacto</a>
+
     </nav>
+
 </header>
 
 <div class="container">
+
     <section class="hero">
+
         <h2>Nuestra Misión</h2>
+
         <p>
-            Brindar servicios de hospedaje de alta calidad, garantizando
-            comodidad, seguridad y satisfacción total a nuestros clientes.
+            Brindar servicios de hospedaje de alta calidad,
+            garantizando comodidad, seguridad y satisfacción
+            total a nuestros clientes.
         </p>
+
     </section>
+
 </div>
 
 <footer>
-    <p>© 2026 Hotel Paraíso</p>
+
+    <p>© 2026 Hotel Quinta Dalam</p>
+
 </footer>
 
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script src="{% static 'hotel/js/main.js' %}"></script>
+
 </body>
+
 </html>

@@ -1,27 +1,40 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Habitaciones - Hotel Paraíso</title>
 
-    {% load static %}
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Habitaciones | Hotel Quinta Dalam</title>
 
     <link rel="stylesheet" href="{% static 'hotel/css/estilos.css' %}">
+
 </head>
 
 <body>
 
 <header>
-    <h1>Hotel Paraíso</h1>
+
+    <h1>Hotel Quinta Dalam</h1>
 
     <nav>
-        <a href="/">Inicio</a>
-        <a href="/mision/">Misión</a>
-        <a href="/vision/">Visión</a>
-        <a href="/catalogo/">Habitaciones</a>
-        <a href="/reservacion/">Reservar</a>
-        <a href="/contacto/">Contacto</a>
+
+        <a href="{% url 'index' %}">Inicio</a>
+
+        <a href="{% url 'mision' %}">Misión</a>
+
+        <a href="{% url 'vision' %}">Visión</a>
+
+        <a href="{% url 'catalogo' %}">Habitaciones</a>
+
+        <a href="{% url 'reservacion' %}">Reservar</a>
+
+        <a href="{% url 'contacto' %}">Contacto</a>
+
     </nav>
+
 </header>
 
 <div class="container">
@@ -30,28 +43,50 @@
 
     <div class="catalogo" id="catalogo">
 
-        <a href="/reservacion/?habitacion=Uruapan" class="card">
+        <a href="{% url 'reservacion' %}?habitacion=Uruapan"
+           class="card">
 
-            <img src="{% static 'hotel/img/hab2.jpg' %}" alt="Habitación Uruapan">
+            <img src="{% static 'hotel/img/hab2.jpg' %}"
+                 alt="Habitación Uruapan">
 
             <div class="card-content">
+
                 <h3>Habitación Uruapan</h3>
+
                 <p>Capacidad: 1-2 personas.</p>
-                <p>Cómoda habitación para una persona.</p>
-                <p class="precio">$800 MXN / noche</p>
+
+                <p>
+                    Cómoda habitación para una persona.
+                </p>
+
+                <p class="precio">
+                    $800 MXN / noche
+                </p>
+
             </div>
 
         </a>
 
-        <a href="/reservacion/?habitacion=Morelia" class="card">
+        <a href="{% url 'reservacion' %}?habitacion=Morelia"
+           class="card">
 
-            <img src="{% static 'hotel/img/hab3.jpg' %}" alt="Habitación Morelia">
+            <img src="{% static 'hotel/img/hab3.jpg' %}"
+                 alt="Habitación Morelia">
 
             <div class="card-content">
+
                 <h3>Habitación Morelia</h3>
+
                 <p>Capacidad: 2-4 personas.</p>
-                <p>Ideal para parejas o familias pequeñas.</p>
-                <p class="precio">$1,200 MXN / noche</p>
+
+                <p>
+                    Ideal para parejas o familias pequeñas.
+                </p>
+
+                <p class="precio">
+                    $1,200 MXN / noche
+                </p>
+
             </div>
 
         </a>
@@ -61,7 +96,9 @@
 </div>
 
 <footer>
-    <p>© 2026 Hotel Paraíso</p>
+
+    <p>© 2026 Hotel Quinta Dalam</p>
+
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -69,4 +106,5 @@
 <script src="{% static 'hotel/js/main.js' %}"></script>
 
 </body>
+
 </html>
