@@ -45,4 +45,19 @@ def vision(request):
 
 
 def formulario(request):
-    return render(request, 'hotel/formulario.html')
+
+    if request.method == "POST":
+
+        Habitacion.objects.create(
+            nombre=request.POST.get("nombre"),
+            descripcion=request.POST.get("descripcion"),
+            precio=request.POST.get("precio"),
+            tipo=request.POST.get("tipo"),
+            imagen=request.POST.get("imagen") 
+        )
+
+        return render(request, "hotel/formulario.html", {
+            "mensaje": "Habitación guardada correctamente"
+        })
+
+    return render(request, "hotel/formulario.html")

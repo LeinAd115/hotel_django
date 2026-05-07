@@ -5,7 +5,7 @@ class Habitacion(models.Model):
     descripcion = models.TextField()
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     tipo = models.CharField(max_length=50)
-    imagen = models.URLField()
+    imagen = models.URLField(max_length=500)
 
     def __str__(self):
         return self.nombre
